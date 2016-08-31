@@ -1,4 +1,4 @@
-# Rebus.TODO
+# Rebus.DryIoc
 
 Provides DryIoc container adapter for [Rebus](https://github.com/rebus-org/Rebus).
 
