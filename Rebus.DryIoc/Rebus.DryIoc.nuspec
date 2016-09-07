@@ -14,12 +14,22 @@
     <tags>rebus ioc dryioc</tags>
     <iconUrl>https://github.com/mookid8000/Rebus/raw/master/artwork/little_rebusbus2_copy-200x200.png</iconUrl>
     <dependencies>
-        <dependency id="Rebus" version="2.0.0-a9" />
-        <dependency id="DryIoc" version="2.5.0" />
+      <dependency id="Rebus" version="2.0.0-a11" />
+      <dependency id="DryIoc.dll" version="2.7.1"/>
+      <dependency id="System.Collections" version="4.0.11"/>
+      <dependency id="System.Diagnostics.Debug" version="4.0.11"/>
+      <dependency id="System.Diagnostics.Tools" version="4.0.1"/>
+      <dependency id="System.Linq" version="4.1.0"/>
+      <dependency id="System.Linq.Expressions" version="4.1.0"/>
+      <dependency id="System.Reflection" version="4.1.0"/>
+      <dependency id="System.Reflection.Extensions" version="4.0.1"/>
+      <dependency id="System.Runtime" version="4.1.0"/>
+      <dependency id="System.Runtime.Extensions" version="4.1.0"/>
+      <dependency id="System.Threading" version="4.0.11"/>
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\Rebus.DryIoc.dll" target="lib\NET452" />
-    <file src="bin\Release\Rebus.DryIoc.xml" target="lib\NET452" />
+    <file src="bin\Release\Rebus.DryIoc.dll" target="lib\NET45" />
+    <file src="bin\Release\Rebus.DryIoc.xml" target="lib\NET45" />
   </files>
 </package>
