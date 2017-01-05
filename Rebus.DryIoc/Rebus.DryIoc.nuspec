@@ -14,7 +14,7 @@
     <tags>rebus ioc dryioc</tags>
     <iconUrl>https://github.com/mookid8000/Rebus/raw/master/artwork/little_rebusbus2_copy-200x200.png</iconUrl>
     <dependencies>
-      <dependency id="Rebus" version="2.0.1" />
+      <dependency id="Rebus" version="3.0.0" />
       <dependency id="DryIoc.dll" version="2.7.1"/>
       <dependency id="System.Collections" version="4.0.11"/>
       <dependency id="System.Diagnostics.Debug" version="4.0.11"/>

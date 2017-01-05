@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DryIoc;
 using Rebus.Activation;
 using Rebus.Bus;
+using Rebus.Bus.Advanced;
 using Rebus.Extensions;
 using Rebus.Handlers;
 using Rebus.Pipeline;
@@ -26,8 +27,8 @@ namespace Rebus.DryIoc
         /// </summary>
         public DryIocContainerAdapter(IContainer container)
         {
+            if (container == null) throw new ArgumentNullException(nameof(container));
             _container = container;
-            _container.Register(Made.Of(() => GetCurrentMessageContext()));
         }
 
         /// <summary>
@@ -55,6 +56,9 @@ namespace Rebus.DryIoc
         /// </summary>
         public void SetBus(IBus bus)
         {
+            _container.Register(Made.Of(() => GetCurrentMessageContext()));
+            _container.Register(typeof(ISyncBus), new DelegateFactory(r => r.Resolve<IBus>().Advanced.SyncBus));
+
             _container.RegisterInstance(bus);
         }
 
