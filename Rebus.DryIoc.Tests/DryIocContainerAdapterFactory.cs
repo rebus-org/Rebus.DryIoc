@@ -1,4 +1,5 @@
-﻿using DryIoc;
+﻿using System.Reflection;
+using DryIoc;
 using Rebus.Activation;
 using Rebus.Bus;
 using Rebus.Handlers;
@@ -18,8 +19,17 @@ namespace Rebus.DryIoc.Tests
 
         public void RegisterHandlerType<THandler>() where THandler : class, IHandleMessages
         {
+#if NETSTANDARD1_6
+            _container.RegisterMany<THandler>(serviceTypeCondition: type =>
+            {
+                var typeInfo = type.GetTypeInfo();
+
+                return typeInfo.IsGenericType && typeInfo.GetGenericTypeDefinition() == typeof(IHandleMessages<>);
+            });
+#else
             _container.RegisterMany<THandler>(serviceTypeCondition: type => 
                 type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IHandleMessages<>));
+#endif
         }
 
         public void CleanUp()
