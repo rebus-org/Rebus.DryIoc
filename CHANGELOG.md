@@ -20,3 +20,4 @@
 
 * Update to Rebus 4
 * Add .NET Core support
+* Update deps to b06
