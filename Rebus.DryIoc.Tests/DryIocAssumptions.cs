@@ -14,15 +14,18 @@ namespace Rebus.DryIoc.Tests
         public void RegisterWorks()
         {
             var factory = new DryIocContainerAdapterFactory();
+            var activator = factory.CreateContainerAdapter(r =>
+            {
+                r.Register<SomeHandler>();
+                r.Register<AnotherHandler>();
 
-            factory.RegisterHandlerType<SomeHandler>();
-            factory.RegisterHandlerType<AnotherHandler>();
+            });
 
             using (var scope = new RebusTransactionScope())
             {
                 const string stringMessage = "bimse";
                 
-                var handlers = factory.GetActivator().GetHandlers(stringMessage, scope.TransactionContext).Result.ToList();
+                var handlers = activator.GetHandlers(stringMessage, scope.TransactionContext).Result.ToList();
                 
                 Assert.That(handlers.Count, Is.EqualTo(2));
             }
