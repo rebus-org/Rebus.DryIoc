@@ -6,7 +6,6 @@ using DryIoc;
 using Rebus.Activation;
 using Rebus.Bus;
 using Rebus.Bus.Advanced;
-using Rebus.Extensions;
 using Rebus.Handlers;
 using Rebus.Pipeline;
 using Rebus.Transport;
@@ -37,14 +36,12 @@ namespace Rebus.DryIoc
         {
             var handlerInstances = _container.Resolve<IList<IHandleMessages<TMessage>>>();
 
-            transactionContext.OnDisposed(() =>
+            transactionContext.OnDisposed(_ =>
             {
-                handlerInstances
-                    .OfType<IDisposable>()
-                    .ForEach(disposable =>
-                    {
-                        disposable.Dispose();
-                    });
+                foreach (var disposable in handlerInstances.OfType<IDisposable>())
+                {
+                    disposable.Dispose();
+                }
             });
 
             return handlerInstances;
